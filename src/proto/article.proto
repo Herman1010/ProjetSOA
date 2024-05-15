@@ -1,0 +1,44 @@
+syntax = "proto3";
+package article;
+
+message Article {
+    string id =1;
+    string  nom = 2;
+    string description = 3;
+    float prix = 4;
+    int32 qte = 5;
+}
+
+message GetArticleRequest {
+    string id = 1;
+}
+
+message GetArticleResponse {
+    Article article = 1;
+}
+
+message SearchArticlesRequest {
+    
+}
+
+message SearchArticlesResponse {
+    repeated Article articles = 1;
+}
+
+message CreateArticleRequest {
+  string nom = 1;
+  string description = 2;
+  float prix = 3;
+  int32 qte = 4;
+}
+
+message CreateArticleResponse {
+  string id = 1;
+}
+
+service ArticleService {
+    rpc GetArticle(GetArticleRequest) returns (GetArticleResponse);
+    rpc SearchArticles(SearchArticlesRequest) returns (SearchArticlesResponse);
+    rpc CreateArticle(CreateArticleRequest) returns (CreateArticleResponse);
+// Ajouter d'autres méthodes au besoin
+}
